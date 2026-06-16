@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact - Ember &amp; Grain</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&amp;family=Inter:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed": "#e3e3de",
+                      "surface-variant": "#3d3327",
+                      "surface-container": "#271e13",
+                      "tertiary-container": "#be996d",
+                      "secondary": "#c6c7c2",
+                      "surface-container-lowest": "#140d04",
+                      "error-container": "#93000a",
+                      "surface": "#1a1208",
+                      "tertiary": "#e8bf91",
+                      "outline": "#9c8e81",
+                      "on-surface-variant": "#d4c4b5",
+                      "on-primary-fixed-variant": "#643f09",
+                      "tertiary-fixed-dim": "#e8bf91",
+                      "on-secondary-container": "#b8b9b4",
+                      "inverse-primary": "#7f5620",
+                      "surface-dim": "#1a1208",
+                      "outline-variant": "#50453a",
+                      "surface-bright": "#42372b",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-fixed": "#ffddb8",
+                      "on-secondary-fixed": "#1a1c19",
+                      "primary-fixed": "#ffddb9",
+                      "error": "#ffb4ab",
+                      "secondary-container": "#484a46",
+                      "on-tertiary-fixed-variant": "#5d411d",
+                      "primary-container": "#c8965a",
+                      "on-surface": "#f1e0ce",
+                      "on-secondary": "#2f312e",
+                      "on-primary-fixed": "#2b1700",
+                      "inverse-surface": "#f1e0ce",
+                      "on-secondary-fixed-variant": "#454744",
+                      "on-primary": "#472a00",
+                      "on-tertiary-fixed": "#2a1700",
+                      "surface-container-highest": "#3d3327",
+                      "inverse-on-surface": "#392f23",
+                      "surface-container-low": "#231a0f",
+                      "on-tertiary": "#442b09",
+                      "surface-tint": "#f3bc7d",
+                      "secondary-fixed-dim": "#c6c7c2",
+                      "primary": "#f3bc7d",
+                      "background": "#1a1208",
+                      "primary-fixed-dim": "#f3bc7d",
+                      "on-primary-container": "#4f2f00",
+                      "surface-container-high": "#32281d",
+                      "on-tertiary-container": "#4b310f",
+                      "on-background": "#f1e0ce",
+                      "on-error": "#690005"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-gap": "128px",
+                      "gutter": "32px",
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "container-max": "1200px",
+                      "margin-mobile": "24px"
+              },
+              "fontFamily": {
+                      "headline-sm": ["EB Garamond", "serif"],
+                      "body-lg": ["Inter", "sans-serif"],
+                      "body-md": ["Inter", "sans-serif"],
+                      "headline-md": ["EB Garamond", "serif"],
+                      "label-caps": ["Inter", "sans-serif"],
+                      "display-lg-mobile": ["EB Garamond", "serif"],
+                      "display-lg": ["EB Garamond", "serif"]
+              },
+              "fontSize": {
+                      "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                      "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { background-color: #1a1208; color: #f1e0ce; }
+        .cream-bg { background-color: #FAF7F2; color: #1a1208; }
+        .glass-panel { background: rgba(26, 18, 8, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    .reveal {
+      opacity: 0;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease;
+    }
+
+    .reveal.active.slide-in-left {
+      animation-name: slide-in-left;
+    }
+
+    .reveal.active.slide-in-right {
+      animation-name: slide-in-right;
+    }
+
+    @keyframes slide-in-left {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slide-in-right {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden selection:bg-primary/30 selection:text-primary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b border-outline-variant/30 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 transition-all duration-300 glass-panel">
+<button aria-label="Menu" class="text-primary dark:text-primary hover:text-primary transition-colors duration-300 opacity-80">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<div class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary dark:text-primary uppercase flex-1 text-center font-bold">
+            EMBER &amp; GRAIN
+        </div>
+<button aria-label="Shopping Bag" class="text-on-surface-variant hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full pt-16">
+<!-- Dark Top Section -->
+<section class="bg-background pt-24 pb-section-gap px-margin-mobile md:px-margin-desktop relative">
+<div class="max-w-container-max mx-auto text-center space-y-16">
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface">Come Find Us</h1>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-gutter max-w-4xl mx-auto">
+<!-- Address -->
+<div class="flex flex-col items-center space-y-4 reveal slide-in-left" style="animation-delay: 0ms;">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 0;">location_on</span>
+<h3 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">ADDRESS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center max-w-[200px]">12 Heritage Lane,<br/>Agartala, Tripura</p>
+</div>
+<!-- Phone -->
+<div class="flex flex-col items-center space-y-4 relative md:after:content-[''] md:after:absolute md:after:top-1/2 md:after:-left-[16px] md:after:-translate-y-1/2 md:after:h-12 md:after:w-px md:after:bg-outline-variant/50 md:before:content-[''] md:before:absolute md:before:top-1/2 md:before:-right-[16px] md:before:-translate-y-1/2 md:before:h-12 md:before:w-px md:before:bg-outline-variant/50 reveal slide-in-left" style="animation-delay: 120ms;">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 0;">phone</span>
+<h3 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">PHONE</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">+91 381 000 0000</p>
+</div>
+<!-- Email -->
+<div class="flex flex-col items-center space-y-4 reveal slide-in-left" style="animation-delay: 240ms;">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 0;">mail</span>
+<h3 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">EMAIL</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">hello@emberandgrain.com</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Cream Bottom Section -->
+<section class="cream-bg relative z-10 w-full rounded-t-[40px] md:rounded-t-[80px] -mt-16 pt-16 pb-section-gap px-margin-mobile md:px-margin-desktop shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
+<div class="max-w-container-max mx-auto space-y-24">
+<!-- Map Placeholder -->
+<div class="w-full h-[320px] bg-[#e3e3de] rounded-lg overflow-hidden border border-outline/20 grayscale contrast-125 relative flex items-center justify-center reveal slide-in-right">
+<img alt="Map View" class="absolute inset-0 w-full h-full object-cover opacity-80" data-alt="A stylized, minimalist map view showing a high-end dining district. The map uses a sophisticated, muted color palette dominated by warm greys and subtle charcoal tones, reflecting a quiet luxury aesthetic. Streets and landmarks are rendered with fine, precise lines, evoking the elegance of an architectural blueprint or a curated guide. The lighting implies a soft, overcast daylight, ensuring the overall mood remains refined and understated, consistent with a premium brand experience." data-location="Agartala" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOi30Qfta5sfiMciT3cnKnjwLSHdO8ZFbjMn1_MUC0t_YV_JCfN7czqcZiYZYsT_0hLqSunroGTgGKPdT-V0sObBwnAmW_KxF6e7Mr1VKG7cCEUMZbtMczCDrchZC0hKFAWkgXK3BkvTJSe-9d0oN_VSkRWlj2WkpCfpWYuzZPTo7Wg7Vvki5ACd5KnAnu2n3kfK5yxR49POy2F6c3M1zNkioBNX8E-e4ScWTKkr7GUIZ8osPvGwg9jvK2KOv5pLU4IAW2lfRIbw-n"/>
+<div class="absolute inset-0 bg-surface/20 mix-blend-multiply"></div>
+<div class="relative z-10 flex flex-col items-center text-surface p-4 bg-white/80 backdrop-blur-sm rounded shadow-lg border border-outline/10">
+<span class="material-symbols-outlined text-primary mb-1">location_on</span>
+<span class="font-label-caps text-label-caps uppercase text-surface-container">Get Directions</span>
+</div>
+</div>
+<!-- Contact Form -->
+<div class="max-w-2xl mx-auto w-full reveal slide-in-right">
+<h2 class="font-headline-md text-headline-md text-surface-container text-center mb-12">Send an Inquiry</h2>
+<form class="space-y-8">
+<div class="relative reveal slide-in-right" style="animation-delay: 0ms;">
+<input class="peer w-full bg-transparent border-0 border-b border-outline/30 px-0 py-3 text-surface-container placeholder-transparent focus:ring-0 focus:border-primary transition-colors duration-300 font-body-md text-body-md" id="name" placeholder="Name" type="text"/>
+<label class="absolute left-0 -top-4 font-label-caps text-label-caps text-outline-variant peer-placeholder-shown:top-3 peer-placeholder-shown:font-body-md peer-placeholder-shown:text-body-md peer-focus:-top-4 peer-focus:font-label-caps peer-focus:text-label-caps peer-focus:text-primary transition-all duration-300 uppercase tracking-widest" for="name">Name</label>
+</div>
+<div class="relative reveal slide-in-right" style="animation-delay: 120ms;">
+<input class="peer w-full bg-transparent border-0 border-b border-outline/30 px-0 py-3 text-surface-container placeholder-transparent focus:ring-0 focus:border-primary transition-colors duration-300 font-body-md text-body-md" id="email" placeholder="Email" type="email"/>
+<label class="absolute left-0 -top-4 font-label-caps text-label-caps text-outline-variant peer-placeholder-shown:top-3 peer-placeholder-shown:font-body-md peer-placeholder-shown:text-body-md peer-focus:-top-4 peer-focus:font-label-caps peer-focus:text-label-caps peer-focus:text-primary transition-all duration-300 uppercase tracking-widest" for="email">Email</label>
+</div>
+<div class="relative pt-2 reveal slide-in-right" style="animation-delay: 240ms;">
+<textarea class="peer w-full bg-transparent border-0 border-b border-outline/30 px-0 py-3 text-surface-container placeholder-transparent focus:ring-0 focus:border-primary transition-colors duration-300 resize-none font-body-md text-body-md" id="message" placeholder="Message" rows="4"></textarea>
+<label class="absolute left-0 -top-2 font-label-caps text-label-caps text-outline-variant peer-placeholder-shown:top-5 peer-placeholder-shown:font-body-md peer-placeholder-shown:text-body-md peer-focus:-top-2 peer-focus:font-label-caps peer-focus:text-label-caps peer-focus:text-primary transition-all duration-300 uppercase tracking-widest" for="message">Message</label>
+</div>
+<div class="pt-8 text-center reveal slide-in-right" style="animation-delay: 360ms;">
+<button class="bg-primary text-surface-container font-label-caps text-label-caps uppercase tracking-widest px-12 py-4 rounded hover:bg-primary-container transition-colors duration-300 w-full sm:w-auto border border-primary hover:border-primary-container" type="submit">
+                                Send Message
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest text-on-surface-variant py-16 px-margin-mobile md:px-margin-desktop border-t border-outline-variant/10">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary opacity-50">
+                E &amp; G
+            </div>
+<div class="flex gap-8">
+<a aria-label="Instagram" class="text-on-surface-variant/60 hover:text-primary transition-colors duration-300" href="#">
+<span class="font-label-caps text-label-caps uppercase tracking-widest">IG</span>
+</a>
+<a aria-label="Facebook" class="text-on-surface-variant/60 hover:text-primary transition-colors duration-300" href="#">
+<span class="font-label-caps text-label-caps uppercase tracking-widest">FB</span>
+</a>
+<a aria-label="TripAdvisor" class="text-on-surface-variant/60 hover:text-primary transition-colors duration-300" href="#">
+<span class="font-label-caps text-label-caps uppercase tracking-widest">TA</span>
+</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant/40">
+                © 2024 Ember &amp; Grain. All rights reserved.
+            </div>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.reveal').forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body></html>

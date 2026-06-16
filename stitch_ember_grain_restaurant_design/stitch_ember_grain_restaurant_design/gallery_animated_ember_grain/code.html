@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ember &amp; Grain - Gallery</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#b8b9b4",
+                    "primary-fixed": "#ffddb9",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#e8bf91",
+                    "primary": "#f3bc7d",
+                    "on-tertiary-container": "#4b310f",
+                    "tertiary-container": "#be996d",
+                    "surface-container-lowest": "#140d04",
+                    "tertiary": "#e8bf91",
+                    "on-secondary-fixed": "#1a1c19",
+                    "inverse-primary": "#7f5620",
+                    "surface-container": "#271e13",
+                    "on-background": "#f1e0ce",
+                    "background": "#1a1208",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-tint": "#f3bc7d",
+                    "on-tertiary": "#442b09",
+                    "surface-container-high": "#32281d",
+                    "surface": "#1a1208",
+                    "on-secondary": "#2f312e",
+                    "secondary": "#c6c7c2",
+                    "outline-variant": "#50453a",
+                    "on-error-container": "#ffdad6",
+                    "inverse-surface": "#f1e0ce",
+                    "surface-variant": "#3d3327",
+                    "secondary-container": "#484a46",
+                    "primary-fixed-dim": "#f3bc7d",
+                    "inverse-on-surface": "#392f23",
+                    "secondary-fixed": "#e3e3de",
+                    "outline": "#9c8e81",
+                    "surface-container-highest": "#3d3327",
+                    "on-surface-variant": "#d4c4b5",
+                    "on-primary": "#472a00",
+                    "surface-container-low": "#231a0f",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-dim": "#1a1208",
+                    "on-secondary-fixed-variant": "#454744",
+                    "surface-bright": "#42372b",
+                    "on-primary-fixed": "#2b1700",
+                    "error-container": "#93000a",
+                    "on-surface": "#f1e0ce",
+                    "secondary-fixed-dim": "#c6c7c2",
+                    "primary-container": "#c8965a",
+                    "on-tertiary-fixed-variant": "#5d411d",
+                    "on-primary-fixed-variant": "#643f09",
+                    "on-primary-container": "#4f2f00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-mobile": "24px",
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "section-gap": "128px",
+                    "gutter": "32px"
+            },
+            "fontFamily": {
+                    "headline-md": ["ebGaramond"],
+                    "display-lg-mobile": ["ebGaramond"],
+                    "headline-sm": ["ebGaramond"],
+                    "body-lg": ["inter"],
+                    "display-lg": ["ebGaramond"],
+                    "body-md": ["inter"],
+                    "label-caps": ["inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar hiding for horizontal filter */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Reveal Animations */
+        @keyframes slide-in-left {
+            0% { opacity: 0; transform: translateX(-40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slide-in-right {
+            0% { opacity: 0; transform: translateX(40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-in-left { opacity: 0; }
+        .slide-in-left.active {
+            animation-name: slide-in-left;
+            animation-duration: 0.5s;
+            animation-timing-function: ease;
+            animation-fill-mode: forwards;
+        }
+
+        .slide-in-right { opacity: 0; }
+        .slide-in-right.active {
+            animation-name: slide-in-right;
+            animation-duration: 0.5s;
+            animation-timing-function: ease;
+            animation-fill-mode: forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased md:hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar from JSON -->
+<header class="bg-background dark:bg-background fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 shadow-[0_1px_0_rgba(80,69,58,0.3)]">
+<button aria-label="Menu" class="text-primary dark:text-primary hover:text-primary transition-colors duration-300 opacity-100 focus:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary dark:text-primary uppercase text-[20px]">
+            EMBER &amp; GRAIN
+        </div>
+<button aria-label="Shopping Bag" class="text-primary dark:text-primary hover:text-primary transition-colors duration-300 opacity-100 focus:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="pt-24 pb-32 px-margin-mobile flex flex-col gap-8">
+<!-- Page Header -->
+<section class="text-center">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-on-background slide-in-left">A Feast for the Eyes</h1>
+</section>
+<!-- Filter Row -->
+<nav aria-label="Gallery filters" class="flex gap-4 overflow-x-auto hide-scrollbar pb-2 snap-x">
+<button aria-pressed="true" class="snap-start shrink-0 rounded-full border border-primary-container text-primary-container px-6 py-2 font-label-caps text-label-caps uppercase transition-colors">
+                All
+            </button>
+<button class="snap-start shrink-0 rounded-full border border-outline-variant/50 text-on-surface-variant px-6 py-2 font-label-caps text-label-caps uppercase transition-colors hover:border-primary-container hover:text-primary-container">
+                Dishes
+            </button>
+<button class="snap-start shrink-0 rounded-full border border-outline-variant/50 text-on-surface-variant px-6 py-2 font-label-caps text-label-caps uppercase transition-colors hover:border-primary-container hover:text-primary-container">
+                Ambience
+            </button>
+<button class="snap-start shrink-0 rounded-full border border-outline-variant/50 text-on-surface-variant px-6 py-2 font-label-caps text-label-caps uppercase transition-colors hover:border-primary-container hover:text-primary-container">
+                Events
+            </button>
+</nav>
+<!-- Gallery Grid -->
+<section aria-label="Photo gallery" class="grid grid-cols-2 gap-3">
+<!-- Item 1: Signature wagyu closeup (tall) -->
+<div class="relative group overflow-hidden rounded-[2px] col-span-1 aspect-[3/4] bg-surface-variant touch-manipulation cursor-pointer slide-in-right" onclick="this.classList.toggle('active')" style="animation-delay: 0ms;">
+<img alt="Signature Wagyu Closeup" class="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" data-alt="An extreme macro, highly detailed photograph of a perfectly seared slice of wagyu beef on a dark matte ceramic plate. The lighting is moody and directional, highlighting the glistening marbling and the coarse sea salt sprinkled on top. Deep charcoal background tones evoke a luxury, quiet dining aesthetic. The rich, deep red of the meat contrasts beautifully against the dark environment, embodying a quiet luxury culinary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJHiFq7uVB_w1tK49qp4nWpP_W4_xfJfBx8hwAayrfx5Q7GIUm9LQtvpIwezq2bcBSlMS_IKkxXEPkui2yLockGifF8HRrkzXQ0fd24Tl9ZBRLUW4duVI4IM6JuEsgFymZS2JvO_dymS4GbVZtgcIq5S8ZZEqwbnL12DfegWocw2ukq5Qnndiy-3CHlcla61dAkGFCgz3hBbYr8jt5YJfpoa5pef1Gr1GLDVpaDBWw1OWuNee5_zxfEh8rvV-CA1fv0I1tF3zqKBH1"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+<span class="font-headline-sm text-headline-sm text-on-background italic text-center">Signature Wagyu</span>
+</div>
+</div>
+<!-- Item 3: Chef plating (standard) -->
+<div class="relative group overflow-hidden rounded-[2px] col-span-1 aspect-square bg-surface-variant touch-manipulation cursor-pointer slide-in-right" onclick="this.classList.toggle('active')" style="animation-delay: 120ms;">
+<img alt="Chef Plating" class="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A focused, low-key lighting photograph of a chef's hands delicately placing a micro-green garnish on a minimalist dish using fine tweezers. The background is softly blurred, showing glimpses of a dark, stainless steel kitchen. Warm, localized lighting illuminates the hands and the vibrant colors of the food. The aesthetic is extremely high-end, precise, and professional, reflecting the exclusive culinary ethos of a fine dining establishment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdniuGbGcenWp8pc_5hEb_3YlJo3pHlTK6d3tjT6zZ9w-GJuDU1d-vL55gGLY9i2AmWYp--jOODbZJfbdoc9cbEYFMDj6hoynSgAht5-oJt4cd3qkDtrfBPOT02oGka_ELq2m8xNIqT1p2do_B1bYKTPQwa9OZl7tesXWNgHGRkifCTR9Z4goBeWjXgjZ0UB6JebrIhQO2PId_xTmfyKpKJzC82AzOvppjN8fjMR_FAOglZI-ZWpayNI_HO7-DScFk_llCmoZ7Ie2F"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+<span class="font-headline-sm text-headline-sm text-on-background italic text-center">Artisan Plating</span>
+</div>
+</div>
+<!-- Item 2: Restaurant interior evening (wide, 2 columns) -->
+<div class="relative group overflow-hidden rounded-[2px] col-span-2 aspect-[16/9] bg-surface-variant touch-manipulation cursor-pointer slide-in-right" onclick="this.classList.toggle('active')" style="animation-delay: 240ms;">
+<img alt="Restaurant Interior" class="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A wide, atmospheric shot of an exclusive restaurant dining room at night. Deep, rich wood tones and charcoal walls define the space. Individual tables are bathed in soft, warm, focused spotlights, creating intimate pools of light amidst the surrounding darkness. The ambient lighting mimics a subtle, glowing hearth in the background. The mood is romantic, quiet, and luxurious, capturing the essence of an elevated culinary sanctuary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu0Oh0xSiGToLZwS1fs7aYIN1CJNtAkafBwKGXdv42J-E58Q_IPWAGpBr5uTKkelAbL_JeM2sQ_y1DXjJUC-UaQbdSNcQ_lxEsMkXz-8XIt6E3gYDroOxiLHMBlooICaEn1J4MRn1D9tcPQ8H6qzVOp0ts4hb_m9SXsu-3ZBLsNJZq1vvbbwIDc1LYpkNg0PfQkHy-GkDiI8_qu6J5oMoBn6zf_vpwRulyP8puDZ3WL0p-FiWsq7uzTHe2FeEL1jKQc-m_FRo-07oa"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+<span class="font-headline-sm text-headline-sm text-on-background italic text-center">Evening Ambiance</span>
+</div>
+</div>
+<!-- Item 4: Private dining room (standard) -->
+<div class="relative group overflow-hidden rounded-[2px] col-span-1 aspect-square bg-surface-variant touch-manipulation cursor-pointer slide-in-right" onclick="this.classList.toggle('active')" style="animation-delay: 360ms;">
+<img alt="Private Dining Room" class="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" data-alt="An intimate interior shot of a private dining enclave designed with quiet luxury in mind. A heavy oak table is set perfectly with minimalist glassware and dark, textured napkins. The room is softly lit by a modern, sculptural brass chandelier emitting a warm, spiced gold glow. The walls are a deep matte black, emphasizing the privacy and exclusivity of the space. The overall composition is symmetrical and serene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv4aM0e9oLigDwjKy8wxTYTFRvhivH3fLZF-DTQ5IgJMAoHLQSxf_C-XdlSaXtMs_Khg6Vi77meTLIRBc6tyTr0K4D7UD_m3Gh-03W2UoOKm3q3Aa1NbwVGBCD_KW1zloFEoaJwXrxAflXpoZ4AZ6XecIoF1766oJy6rOEn10f9aXZGF5CRrcwB2LyrasQ7Y3CQm0QwdQWg75h7hhAnJSVY8rUpWxom-XjrfMeL4sILSbW7AdOFuKs09z2cdilXkJxPVwz9RH_nhWR"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+<span class="font-headline-sm text-headline-sm text-on-background italic text-center">The Cellar Room</span>
+</div>
+</div>
+<!-- Item 5: Seasonal ingredients (tall) -->
+<div class="relative group overflow-hidden rounded-[2px] col-span-1 aspect-[3/4] bg-surface-variant touch-manipulation cursor-pointer slide-in-right" onclick="this.classList.toggle('active')" style="animation-delay: 480ms;">
+<img alt="Seasonal Ingredients" class="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A moody, still-life style photograph of raw, seasonal ingredients like wild mushrooms, fresh truffles, and heritage root vegetables resting on a dark, heavily textured stone slab. The lighting mimics natural window light filtered through a thick curtain, casting deep, dramatic shadows. The colors are muted and earthy, dominated by deep browns, forest greens, and touches of earth. The image conveys a reverence for terroir and natural culinary arts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhV5L54q9DwwVX4LJLm0b9GkWI6ck7EBaJz2hNjac4XIKYuO3IfsR-ef3jFDJK3Fe8vYAaoOC6N3dFhI48H5dCjNH-Tnm8C9thUWO8X26YlCAqG-phJjX2XXbJVb0Gsi0FYH2HOVazRHrJSNk8iIk1FoTROB37ZTskcOD2a8stUoohxxtUcH5yNlcjYv9XCXgbJWZh7w8WYc00DrpIOiI5N-Ym2QYDqT0AOWz9P_RaJmCjn60GS89rIR_PR1NEdsdhrPYVlNR28JqR"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+<span class="font-headline-sm text-headline-sm text-on-background italic text-center">Seasonal Harvest</span>
+</div>
+</div>
+<!-- Item 7: Open kitchen (wide, 2 columns) -->
+<div class="relative group overflow-hidden rounded-[2px] col-span-2 aspect-[16/9] bg-surface-variant touch-manipulation cursor-pointer slide-in-right" onclick="this.classList.toggle('active')" style="animation-delay: 600ms;">
+<img alt="Open Kitchen" class="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A dynamic yet refined photograph of an open concept fine dining kitchen during service. Flames rise sharply from a wood-fired grill, providing the primary source of warm, kinetic lighting in an otherwise dark, sleek, black-tiled environment. Silhouettes of chefs working with orchestrated precision are visible in the background. The visual aesthetic captures the intense, passionate energy of an exclusive restaurant's hearth, balancing fire and shadow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6Sy-IsH0XMr2UuI1QWPw6U9H9L09T4ppt8eRcX_W9mJK5i680yaxL_YJgOZcYBge92P57guW3sQ51RgGZf61cvKugGpG7_hBQQJUGJ_ZdSGc7tMjLbxpqLmzjbx4iKK1QM8DdCfu7UBD3Vmm_NsAHxxawExirhClN4qvsEB74jHEMxXwC4VN9NMrI7z2vwKVRl3TlQh095HeKebYYPuANnP2yXDhFs_XlNTmMEpaP3RuCxCrl6CvrF7YG34rmmdtN_kHMYyUmi6R1"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+<span class="font-headline-sm text-headline-sm text-on-background italic text-center">The Hearth</span>
+</div>
+</div>
+<!-- Item 6: Bar setup (standard) -->
+<div class="relative group overflow-hidden rounded-[2px] col-span-1 aspect-square bg-surface-variant touch-manipulation cursor-pointer slide-in-right" onclick="this.classList.toggle('active')" style="animation-delay: 720ms;">
+<img alt="Bar Setup" class="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A close-up shot of a sophisticated cocktail resting on a polished, dark mahogany bar counter. The background is a beautifully out-of-focus array of backlit amber liquor bottles, creating warm, golden bokeh circles. A single, large, clear ice cube sits in the crystal glass, reflecting a solitary spotlight overhead. The atmosphere is intimate, quiet, and deeply luxurious, echoing an exclusive speakeasy vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtMweDsaCQQ388KIGn2qZlH0V_UB__n88NF56xAd_zSzx8ukpBih7OHZd8EC96miFE1QR-sp7wRrGosF0C162KGNPlb_mZ2YPnBHaApo-K0kg7DazPckR-xY72YdO_VixR1sa6S45Ts7hFxSoEGknICDbGciv2bvni8531Ez8o8DFxosr2Vf6Tihfr5Ol1sBJ64o5vHmNGuP2-mhUPhdIVlL2ACJYN2sswb6NqtK-2LZfPPUh0Exes5UkPLspiYfkpN6ORcglV24qM"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+<span class="font-headline-sm text-headline-sm text-on-background italic text-center">Mixology</span>
+</div>
+</div>
+<!-- Item 8: Dessert station (standard) -->
+<div class="relative group overflow-hidden rounded-[2px] col-span-1 aspect-square bg-surface-variant touch-manipulation cursor-pointer slide-in-right" onclick="this.classList.toggle('active')" style="animation-delay: 840ms;">
+<img alt="Dessert Plate" class="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105" data-alt="An exquisite, minimalist photograph of an avant-garde chocolate dessert on a matte black plate. A subtle dust of gold leaf catches a precise ray of warm light. The surrounding environment falls away into complete, rich darkness. The composition is highly editorial and sharp, emphasizing the delicate textures of the spun sugar and dark chocolate against the dark background. The image defines modern fine dining luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVtSkelS2hRYvJZXQvwYvGO8JLFDZEdp1pGHmcNI42D3L8xgI1v_u1rh5mOPPPTStUkd5Zg3Qra0Z_zxZKl_VnsAYeQ31y27PxEvUHlJF0U_0i0eWOa27R0c_V7jD_KdI9MLLB6nlQONyO-Uw1gYQ5cEw6Gc9CsMQqGC_FrAWnl6LBcCDQRnGfClA_ei8p1quxi_Pk-vcI0EDNfaXxO6NT0dNXqD7j3WXJd8P72HozqSnl8p2TXZup__J62-ydrPfwXv08h0v4MPeN"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+<span class="font-headline-sm text-headline-sm text-on-background italic text-center">Sweet Finale</span>
+</div>
+</div>
+</section>
+<!-- Embed established dark footer from previous screens -->
+<div class="mt-8 border-t border-outline-variant/30 pt-8 opacity-80">
+            {{DATA:SCREEN:SCREEN_4}}
+        </div>
+</main>
+<!-- BottomNavBar from JSON -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest fixed bottom-0 w-full z-50 pb-safe border-t border-outline-variant/20 flat no shadows flex justify-around items-center py-4 px-margin-mobile">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500 w-16">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-[10px] tracking-[0.15em] uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500 w-16">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="font-label-caps text-[10px] tracking-[0.15em] uppercase">Menu</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500 w-16">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-caps text-[10px] tracking-[0.15em] uppercase">Book</span>
+</button>
+<!-- Active state for Gallery (maps best to Story) -->
+<button aria-current="page" class="flex flex-col items-center justify-center text-primary gap-1 scale-95 transition-transform w-16">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-caps text-[10px] tracking-[0.15em] uppercase text-primary">Story</span>
+</button>
+</nav>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
+</body></html>

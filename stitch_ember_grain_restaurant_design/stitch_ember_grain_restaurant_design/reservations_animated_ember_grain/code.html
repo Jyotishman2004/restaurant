@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ember &amp; Grain - Reservations</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=EB+Garamond:wght@400;500;600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#3d3327",
+                        "on-primary-fixed": "#2b1700",
+                        "primary-container": "#c8965a",
+                        "on-surface": "#f1e0ce",
+                        "outline": "#9c8e81",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-secondary-fixed-variant": "#454744",
+                        "tertiary-fixed-dim": "#e8bf91",
+                        "surface-variant": "#3d3327",
+                        "inverse-on-surface": "#392f23",
+                        "surface-container": "#271e13",
+                        "inverse-surface": "#f1e0ce",
+                        "on-tertiary": "#442b09",
+                        "on-surface-variant": "#d4c4b5",
+                        "outline-variant": "#50453a",
+                        "on-primary-fixed-variant": "#643f09",
+                        "surface-container-high": "#32281d",
+                        "on-primary": "#472a00",
+                        "primary-fixed-dim": "#f3bc7d",
+                        "inverse-primary": "#7f5620",
+                        "secondary": "#c6c7c2",
+                        "on-secondary-fixed": "#1a1c19",
+                        "tertiary": "#e8bf91",
+                        "secondary-fixed-dim": "#c6c7c2",
+                        "on-secondary": "#2f312e",
+                        "on-background": "#f1e0ce",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#be996d",
+                        "surface-bright": "#42372b",
+                        "on-error": "#690005",
+                        "on-primary-container": "#4f2f00",
+                        "surface-container-low": "#231a0f",
+                        "secondary-fixed": "#e3e3de",
+                        "on-tertiary-fixed-variant": "#5d411d",
+                        "primary-fixed": "#ffddb9",
+                        "primary": "#f3bc7d",
+                        "secondary-container": "#484a46",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#b8b9b4",
+                        "surface-tint": "#f3bc7d",
+                        "surface": "#1a1208",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffddb8",
+                        "background": "#1a1208",
+                        "surface-container-lowest": "#140d04",
+                        "surface-dim": "#1a1208",
+                        "on-tertiary-container": "#4b310f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "24px",
+                        "container-max": "1200px",
+                        "section-gap": "128px",
+                        "gutter": "32px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["ebGaramond"],
+                        "headline-md": ["ebGaramond"],
+                        "body-lg": ["inter"],
+                        "label-caps": ["inter"],
+                        "display-lg-mobile": ["ebGaramond"],
+                        "body-md": ["inter"],
+                        "display-lg": ["ebGaramond"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-input {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid theme('colors.outline');
+            border-radius: 0;
+            padding: 8px 0;
+            color: theme('colors.on-surface');
+            width: 100%;
+        }
+        .custom-input:focus {
+            outline: none;
+            box-shadow: none;
+            border-bottom: 1px solid theme('colors.primary');
+        }
+        .custom-input::placeholder {
+            color: theme('colors.on-surface-variant');
+            opacity: 0.5;
+        }
+        select.custom-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f3bc7d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: 16px;
+            padding-right: 24px;
+        }
+        select.custom-input option {
+            background-color: theme('colors.surface-container-highest');
+            color: theme('colors.on-surface');
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.8) sepia(0.5) saturate(2) hue-rotate(340deg);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    
+    /* Reveal Animations */
+    .slide-in-left {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .slide-in-right {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .slide-in-left.active, .slide-in-right.active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Stagger Delays */
+    .stagger-1 { transition-delay: 0ms; }
+    .stagger-2 { transition-delay: 120ms; }
+    .stagger-3 { transition-delay: 240ms; }
+    .stagger-4 { transition-delay: 360ms; }
+    .stagger-5 { transition-delay: 480ms; }
+    .stagger-6 { transition-delay: 600ms; }
+  </style>
+</head>
+<body class="bg-[#FAF7F2] text-[#2C1F0E] antialiased min-h-screen flex flex-col pt-16 pb-20 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b border-outline-variant/30 flex justify-between items-center px-margin-mobile h-16">
+<button class="text-primary dark:text-primary hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary dark:text-primary">EMBER &amp; GRAIN</div>
+<button class="text-primary dark:text-primary hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-6 py-12 md:py-24 max-w-container-max mx-auto w-full">
+<h1 class="font-display-lg-mobile text-[#2C1F0E] md:font-display-lg md:text-display-lg text-center mb-12">Reserve Your Table</h1>
+<div class="bg-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.05)] w-full max-w-2xl p-8 md:p-10 border border-[#E5E0D8]">
+<form class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Date -->
+<div class="flex flex-col slide-in-left stagger-1">
+<label class="font-label-caps text-label-caps text-[#C8965A] mb-2 uppercase tracking-widest">Date</label>
+<input class="custom-input !text-[#2C1F0E] !border-[#E5E0D8] focus:!border-[#C8965A]" required="" type="date"/>
+</div>
+<!-- Time -->
+<div class="flex flex-col slide-in-left stagger-2">
+<label class="font-label-caps text-label-caps text-[#C8965A] mb-2 uppercase tracking-widest">Time</label>
+<select class="custom-input !text-[#2C1F0E] !border-[#E5E0D8] focus:!border-[#C8965A]" required="">
+<option disabled="" selected="" value="">Select a time</option>
+<option value="12:00">12:00 PM</option>
+<option value="12:30">12:30 PM</option>
+<option value="13:00">1:00 PM</option>
+<option value="13:30">1:30 PM</option>
+<option value="18:00">6:00 PM</option>
+<option value="18:30">6:30 PM</option>
+<option value="19:00">7:00 PM</option>
+<option value="19:30">7:30 PM</option>
+<option value="20:00">8:00 PM</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Guests -->
+<div class="flex flex-col slide-in-left stagger-3">
+<label class="font-label-caps text-label-caps text-[#C8965A] mb-2 uppercase tracking-widest">Guests</label>
+<select class="custom-input !text-[#2C1F0E] !border-[#E5E0D8] focus:!border-[#C8965A]" required="">
+<option value="1">1 Person</option>
+<option selected="" value="2">2 People</option>
+<option value="3">3 People</option>
+<option value="4">4 People</option>
+<option value="5">5 People</option>
+<option value="6">6 People</option>
+<option value="7">7 People</option>
+<option value="8">8 People</option>
+<option value="9">9 People</option>
+<option value="10">10 People</option>
+<option value="11">11 People</option>
+<option value="12">12 People</option>
+</select>
+</div>
+<!-- Name -->
+<div class="flex flex-col slide-in-left stagger-4">
+<label class="font-label-caps text-label-caps text-[#C8965A] mb-2 uppercase tracking-widest">Name</label>
+<input class="custom-input !text-[#2C1F0E] !border-[#E5E0D8] focus:!border-[#C8965A]" placeholder="Your full name" required="" type="text"/>
+</div>
+</div>
+<!-- Phone -->
+<div class="flex flex-col slide-in-left stagger-5">
+<label class="font-label-caps text-label-caps text-[#C8965A] mb-2 uppercase tracking-widest">Phone</label>
+<input class="custom-input !text-[#2C1F0E] !border-[#E5E0D8] focus:!border-[#C8965A]" placeholder="+1 (555) 000-0000" required="" type="tel"/>
+</div>
+<!-- Special Requests -->
+<div class="flex flex-col slide-in-left stagger-6">
+<label class="font-label-caps text-label-caps text-[#C8965A] mb-2 uppercase tracking-widest">Special Requests</label>
+<textarea class="custom-input !text-[#2C1F0E] !border-[#E5E0D8] focus:!border-[#C8965A] resize-none" placeholder="Dietary requirements or special occasions..." rows="3"></textarea>
+</div>
+<div class="pt-6">
+<button class="w-full bg-[#C8965A] text-[#1A1208] font-label-caps text-label-caps uppercase tracking-widest py-4 hover:bg-[#b08048] transition-colors duration-300 rounded-none slide-in-right" type="submit">
+                        Confirm Reservation
+                    </button>
+</div>
+</form>
+</div>
+<div class="mt-12 text-center text-[#2C1F0E]/70 font-body-md text-body-md max-w-md mx-auto slide-in-right">
+<p>Mon–Thu 12pm–10pm <span class="mx-2 opacity-50">|</span> Fri–Sat 12pm–11pm <span class="mx-2 opacity-50">|</span> Sun 12pm–9pm</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 flex justify-around items-center py-4 px-margin-mobile">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500">
+<span class="material-symbols-outlined" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-label-caps text-label-caps">Menu</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary gap-1 hover:text-primary transition-all duration-500 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="calendar_month" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="font-label-caps text-label-caps">Book</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-caps text-label-caps">Story</span>
+</button>
+</nav>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.slide-in-left, .slide-in-right');
+        revealElements.forEach(el => observer.observe(el));
+    });
+</script>
+</body></html>
