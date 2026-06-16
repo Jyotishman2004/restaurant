@@ -46,16 +46,29 @@
 </head>
 <body class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
 <!-- Top Navigation (Mobile) -->
-<header class="md:hidden fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-outline-variant/30 transition-all duration-300" id="top-nav">
-<div class="flex justify-between items-center w-full px-margin-mobile h-16">
-<button aria-label="Menu" class="text-primary hover:opacity-80 transition-opacity">
-<span class="material-symbols-outlined text-2xl">menu</span>
+<header class="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-outline-variant/30 transition-all duration-300">
+<!-- Mobile TopAppBar (from JSON) -->
+<nav class="flex justify-between items-center w-full px-margin-mobile h-16 md:hidden">
+<button aria-label="Menu" class="text-on-surface-variant hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined">menu</span>
 </button>
-<h1 class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary truncate mx-4">EMBER &amp; GRAIN</h1>
-<button aria-label="Shopping Bag" class="text-primary hover:opacity-80 transition-opacity">
-<span class="material-symbols-outlined text-2xl">shopping_bag</span>
+<a href="index.html" class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary">EMBER &amp; GRAIN</a>
+<button aria-label="Shopping Bag" class="text-on-surface-variant hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined">shopping_bag</span>
 </button>
+</nav>
+<!-- Desktop Navigation Navbar -->
+<nav class="hidden md:flex justify-between items-center w-full max-w-container-max mx-auto px-margin-desktop h-24">
+<div class="flex-shrink-0">
+<a href="index.html" class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary cursor-pointer hover:opacity-80 transition-opacity">EMBER &amp; GRAIN</a>
 </div>
+<div class="flex items-center space-x-12">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300 uppercase" href="menu.html">Menu</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300 uppercase" href="story.html">Our Story</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300 uppercase" href="gallery.html">Gallery</a>
+<a class="px-6 py-3 border border-outline hover:border-primary-container text-on-surface hover:text-primary-container hover:bg-primary-container/10 transition-all duration-300 font-label-caps text-label-caps uppercase tracking-widest" href="reservation.html">Reserve</a>
+</div>
+</nav>
 </header>
 <!-- Main Content Canvas -->
 <main class="pt-20 pb-32 md:pt-32">
