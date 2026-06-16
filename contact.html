@@ -68,7 +68,7 @@
 <div class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary dark:text-primary uppercase flex-1 text-center font-bold">
             EMBER &amp; GRAIN
         </div>
-<button aria-label="Shopping Bag" class="text-on-surface-variant hover:text-primary transition-colors duration-300">
+<button aria-label="Shopping Bag" class="text-on-surface-variant hover:text-primary transition-colors duration-300" onclick="alert(\'Your shopping bag is currently empty.\')">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
 </button>
 </header>
@@ -215,5 +215,40 @@
         }
     });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Handle all shopping bag buttons
+        const allButtons = document.querySelectorAll('button');
+        allButtons.forEach(b => {
+            if (b.textContent.includes('shopping_bag') || b.getAttribute('aria-label') === 'Shopping Bag') {
+                b.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Your shopping bag is currently empty.');
+                });
+            }
+        });
+
+        // Handle all remaining # links
+        const emptyLinks = document.querySelectorAll('a[href="#"]');
+        emptyLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const aria = link.getAttribute('aria-label') || '';
+                const text = link.textContent || '';
+                if (aria.includes("Instagram") || text.includes("IG") || text.includes("Instagram")) {
+                    window.open("https://instagram.com/emberandgrain", "_blank");
+                } else if (aria.includes("Facebook") || text.includes("FB")) {
+                    window.open("https://facebook.com/emberandgrain", "_blank");
+                } else if (aria.includes("TripAdvisor") || text.includes("TA")) {
+                    window.open("https://tripadvisor.com/", "_blank");
+                } else {
+                    alert("This feature is coming soon!");
+                }
+            });
+        });
+    });
+</script>
 </body>
+
 </html>

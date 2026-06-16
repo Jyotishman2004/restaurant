@@ -104,7 +104,7 @@
 <div class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary dark:text-primary">
             EMBER &amp; GRAIN
         </div>
-<button aria-label="Shopping Bag" class="text-on-surface-variant hover:text-primary transition-colors duration-300 slide-in-right">
+<button aria-label="Shopping Bag" class="text-on-surface-variant hover:text-primary transition-colors duration-300 slide-in-right" onclick="alert(\'Your shopping bag is currently empty.\')">
 <span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
 </button>
 </header>
@@ -114,10 +114,10 @@
 <section class="w-full mt-24 mb-16 flex flex-col items-center">
 <h1 class="font-display-lg text-display-lg mb-12 text-[#2C1F0E]">Our Menu</h1>
 <nav class="flex justify-center gap-8 md:gap-16 w-full overflow-x-auto no-scrollbar pb-4">
-<button class="font-label-caps text-label-caps text-[#2C1F0E] gold-underline uppercase tracking-widest">Starters</button>
-<button class="font-label-caps text-label-caps text-[#9A8870] hover:text-[#2C1F0E] transition-colors uppercase tracking-widest">Mains</button>
-<button class="font-label-caps text-label-caps text-[#9A8870] hover:text-[#2C1F0E] transition-colors uppercase tracking-widest">Desserts</button>
-<button class="font-label-caps text-label-caps text-[#9A8870] hover:text-[#2C1F0E] transition-colors uppercase tracking-widest">Drinks</button>
+<button class="font-label-caps text-label-caps text-[#2C1F0E] gold-underline uppercase tracking-widest" onclick="alert(\'Menu filtering coming soon!\')">Starters</button>
+<button class="font-label-caps text-label-caps text-[#9A8870] hover:text-[#2C1F0E] transition-colors uppercase tracking-widest" onclick="alert(\'Menu filtering coming soon!\')">Mains</button>
+<button class="font-label-caps text-label-caps text-[#9A8870] hover:text-[#2C1F0E] transition-colors uppercase tracking-widest" onclick="alert(\'Menu filtering coming soon!\')">Desserts</button>
+<button class="font-label-caps text-label-caps text-[#9A8870] hover:text-[#2C1F0E] transition-colors uppercase tracking-widest" onclick="alert(\'Menu filtering coming soon!\')">Drinks</button>
 </nav>
 </section>
 <!-- Menu Section: Starters -->
@@ -218,7 +218,7 @@
 <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="story.html">Our Story</a>
 <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="menu.html">The Menu</a>
 <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="reservation.html">Reservations</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Private Dining</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Private Dining</a>
 </div>
 <!-- Contact -->
 <div class="md:col-span-3 flex flex-col gap-4">
@@ -305,5 +305,40 @@
         }
     });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Handle all shopping bag buttons
+        const allButtons = document.querySelectorAll('button');
+        allButtons.forEach(b => {
+            if (b.textContent.includes('shopping_bag') || b.getAttribute('aria-label') === 'Shopping Bag') {
+                b.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Your shopping bag is currently empty.');
+                });
+            }
+        });
+
+        // Handle all remaining # links
+        const emptyLinks = document.querySelectorAll('a[href="#"]');
+        emptyLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const aria = link.getAttribute('aria-label') || '';
+                const text = link.textContent || '';
+                if (aria.includes("Instagram") || text.includes("IG") || text.includes("Instagram")) {
+                    window.open("https://instagram.com/emberandgrain", "_blank");
+                } else if (aria.includes("Facebook") || text.includes("FB")) {
+                    window.open("https://facebook.com/emberandgrain", "_blank");
+                } else if (aria.includes("TripAdvisor") || text.includes("TA")) {
+                    window.open("https://tripadvisor.com/", "_blank");
+                } else {
+                    alert("This feature is coming soon!");
+                }
+            });
+        });
+    });
+</script>
 </body>
+
 </html>

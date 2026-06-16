@@ -53,7 +53,7 @@
 <span class="material-symbols-outlined">menu</span>
 </button>
 <a href="index.html" class="font-display-lg-mobile text-display-lg-mobile tracking-widest text-primary">EMBER &amp; GRAIN</a>
-<button aria-label="Shopping Bag" class="text-on-surface-variant hover:text-primary transition-colors duration-300">
+<button aria-label="Shopping Bag" onclick="alert(\'Your shopping bag is currently empty.\')" class="text-on-surface-variant hover:text-primary transition-colors duration-300">
 <span class="material-symbols-outlined">shopping_bag</span>
 </button>
 </nav>
@@ -154,19 +154,19 @@
 <!-- Bottom Navigation (Mobile) -->
 <nav class="md:hidden fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest border-t border-outline-variant/20 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
 <div class="flex justify-around items-center w-full py-4 px-margin-mobile">
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500" href="index.html">
 <span class="material-symbols-outlined text-2xl">home</span>
 <span class="font-label-caps text-label-caps uppercase text-[10px]">Home</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500" href="menu.html">
 <span class="material-symbols-outlined text-2xl">restaurant_menu</span>
 <span class="font-label-caps text-label-caps uppercase text-[10px]">Menu</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 hover:text-primary transition-all duration-500" href="reservation.html">
 <span class="material-symbols-outlined text-2xl">calendar_month</span>
 <span class="font-label-caps text-label-caps uppercase text-[10px]">Book</span>
 </a>
-<a aria-current="page" class="flex flex-col items-center justify-center text-primary gap-1 scale-95 transition-transform" href="#">
+<a aria-current="page" class="flex flex-col items-center justify-center text-primary gap-1 scale-95 transition-transform" href="story.html">
 <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
 <span class="font-label-caps text-label-caps uppercase text-[10px] text-primary">Story</span>
 </a>
@@ -257,5 +257,40 @@
         }
     });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Handle all shopping bag buttons
+        const allButtons = document.querySelectorAll('button');
+        allButtons.forEach(b => {
+            if (b.textContent.includes('shopping_bag') || b.getAttribute('aria-label') === 'Shopping Bag') {
+                b.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Your shopping bag is currently empty.');
+                });
+            }
+        });
+
+        // Handle all remaining # links
+        const emptyLinks = document.querySelectorAll('a[href="#"]');
+        emptyLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const aria = link.getAttribute('aria-label') || '';
+                const text = link.textContent || '';
+                if (aria.includes("Instagram") || text.includes("IG") || text.includes("Instagram")) {
+                    window.open("https://instagram.com/emberandgrain", "_blank");
+                } else if (aria.includes("Facebook") || text.includes("FB")) {
+                    window.open("https://facebook.com/emberandgrain", "_blank");
+                } else if (aria.includes("TripAdvisor") || text.includes("TA")) {
+                    window.open("https://tripadvisor.com/", "_blank");
+                } else {
+                    alert("This feature is coming soon!");
+                }
+            });
+        });
+    });
+</script>
 </body>
+
 </html>
