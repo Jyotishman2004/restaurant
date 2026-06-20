@@ -81,7 +81,7 @@
                 Fine Dining · Est. 1994
             </p>
 <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-8 leading-tight">
-<span class="animate-char" style="animation-delay: 0ms;">E</span><span class="animate-char" style="animation-delay: 50ms;">m</span><span class="animate-char" style="animation-delay: 100ms;">b</span><span class="animate-char" style="animation-delay: 150ms;">e</span><span class="animate-char" style="animation-delay: 200ms;">r</span><span class="animate-char" style="animation-delay: 250ms;"> </span><span class="animate-char" style="animation-delay: 300ms;">&amp;</span><span class="animate-char" style="animation-delay: 350ms;"> </span><span class="animate-char" style="animation-delay: 400ms;">G</span><span class="animate-char" style="animation-delay: 450ms;">r</span><span class="animate-char" style="animation-delay: 500ms;">a</span><span class="animate-char" style="animation-delay: 550ms;">i</span><span class="animate-char" style="animation-delay: 600ms;">n</span>
+<span class="inline-block whitespace-nowrap"><span class="animate-char" style="animation-delay: 0ms;">E</span><span class="animate-char" style="animation-delay: 50ms;">m</span><span class="animate-char" style="animation-delay: 100ms;">b</span><span class="animate-char" style="animation-delay: 150ms;">e</span><span class="animate-char" style="animation-delay: 200ms;">r</span></span><span class="animate-char" style="animation-delay: 250ms;"> </span><span class="inline-block whitespace-nowrap"><span class="animate-char" style="animation-delay: 300ms;">&amp;</span></span><span class="animate-char" style="animation-delay: 350ms;"> </span><span class="inline-block whitespace-nowrap"><span class="animate-char" style="animation-delay: 400ms;">G</span><span class="animate-char" style="animation-delay: 450ms;">r</span><span class="animate-char" style="animation-delay: 500ms;">a</span><span class="animate-char" style="animation-delay: 550ms;">i</span><span class="animate-char" style="animation-delay: 600ms;">n</span></span>
 </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant italic mb-12 max-w-lg mx-auto animate-slide-up-tagline">
                 Where fire meets the field
@@ -169,7 +169,7 @@
 </script>
 
 <!-- Mobile Navigation Drawer -->
-<div id="mobile-menu-drawer" class="fixed inset-0 bg-background/95 backdrop-blur-xl z-[60] transform translate-x-full transition-transform duration-300 flex flex-col pt-20 px-8 md:hidden">
+<div id="mobile-menu-drawer" class="fixed inset-0 bg-background/95 backdrop-blur-xl z-[60] transform translate-x-full transition-transform duration-300 flex flex-col pt-20 px-8 md:hidden invisible pointer-events-none">
     <button id="close-mobile-menu-btn" aria-label="Close Menu" class="absolute top-5 left-6 text-on-surface-variant hover:text-primary transition-colors">
         <span class="material-symbols-outlined text-[28px]">close</span>
     </button>
@@ -194,12 +194,12 @@
         if (drawer && closeBtn) {
             menuBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    drawer.classList.remove('translate-x-full');
+                    drawer.classList.remove('translate-x-full', 'invisible', 'pointer-events-none');
                 });
             });
             
             closeBtn.addEventListener('click', () => {
-                drawer.classList.add('translate-x-full');
+                drawer.classList.add('translate-x-full', 'invisible', 'pointer-events-none');
             });
         }
     });
